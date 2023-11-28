@@ -20,18 +20,23 @@ Este proyecto implementa una red neuronal multicapa para la clasificación binar
 ### Uso del Programa
 
 1. Ejecutar `Main.py`.
+
    ![image](https://github.com/Dmn117/Levemberg-Marquardt/assets/102609918/2f7fd6c8-3eb4-4548-bb99-deac23862490)
 
-3. Ajustar los parámetros de la red neuronal desde la interfaz gráfica.
+2. Ajustar los parámetros de la red neuronal desde la interfaz gráfica.
+
    ![image](https://github.com/Dmn117/Levemberg-Marquardt/assets/102609918/11c1bea7-6927-4379-a5f2-e2c4fca9822e)
 
-5. Hacer clic en el área de la gráfica para etiquetar puntos como azules (clic izquierdo, clase 0) o rojos (derecho, clase 1).
+3. Hacer clic en el área de la gráfica para etiquetar puntos como azules (clic izquierdo, clase 0) o rojos (derecho, clase 1).
+
    ![image](https://github.com/Dmn117/Levemberg-Marquardt/assets/102609918/feb9679c-d9af-4b2f-b1ed-1c595e709dc3)
 
-7. Iniciar el entrenamiento y observar la evolución en tiempo real.
+4. Iniciar el entrenamiento y observar la evolución en tiempo real.
+
    ![image](https://github.com/Dmn117/Levemberg-Marquardt/assets/102609918/53668a7a-3c03-46c4-9bac-45f594cc2e2c)
 
-9. Observa el resultado al terminar las epocas del entrenamiento.
+5. Observa el resultado al terminar las epocas del entrenamiento.
+
    ![image](https://github.com/Dmn117/Levemberg-Marquardt/assets/102609918/edcc5f2f-d4a5-40a1-a6b9-73a083b1f58e)
 
 
