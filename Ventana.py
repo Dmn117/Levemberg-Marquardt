@@ -113,3 +113,150 @@ class Ventana(CTk):
         # Funciones Locales
         def validateEntry(*args):
             self.validateEntry(entry_x1, *args)
+
+        def graficar():
+            if not self.__puntos:
+                CTkMessagebox(
+                    title="Error", 
+                    message='''No se Puede Graficar sin antes seleccionar puntos en el Plano
+                            \n\nFavor de seleccionar al menos un punto coordenado del Plano 
+                            antes de Generar la Grafica''', 
+                    icon="cancel"
+                )
+            else:
+                self.generarGrafica()
+
+
+        def mostrarMatriz():
+            if not self.__X:
+                CTkMessagebox(
+                    title="Error", 
+                    message='''No se Puede Graficar sin antes seleccionar puntos en el Plano
+                            \n\nFavor de seleccionar al menos un punto coordenado del Plano 
+                            antes de Generar la Grafica''', 
+                    icon="cancel"
+                )
+            else:
+                self.mostrarMatriz()
+
+
+        # Definicion de Propiedades visuales dentro de la Pestaña
+        labelName = CTkLabel(
+            sidebarFrame, 
+            text='\n\n',
+            padx=5,
+            fg_color="transparent",
+            text_color=WHITE,
+            font=(
+                "Arial",
+                12
+            )
+        )
+        labelName.grid(row=0, column=0, columnspan=2, pady=5, sticky='news')
+
+
+        label_puntos = CTkLabel(
+            sidebarFrame, 
+            text='Neuronas: ', 
+            fg_color="transparent", 
+            text_color=WHITE,
+            font=(
+                "Arial",
+                16
+            )
+        )
+        label_puntos.grid(row=2, column=0, padx=5, sticky='w')
+
+        entry_puntos = CTkEntry(sidebarFrame, width=100, textvariable=self.__neuronas)
+        entry_puntos.bind("<KeyRelease>", validateEntry)
+        entry_puntos.grid(row=2, column=1, padx=5, pady=5, sticky='e')
+
+
+        label_w1 = CTkLabel(
+            sidebarFrame, 
+            text='Error: ', 
+            fg_color="transparent", 
+            text_color=WHITE,
+            font=(
+                "Arial",
+                16
+            )
+        )
+        label_w1.grid(row=3, column=0, padx=5, sticky='w')
+
+        entry_w1 = CTkEntry(sidebarFrame, width=100, textvariable=self.__error)
+        entry_w1.grid(row=3, column=1, padx=5, pady=5, sticky='e')
+
+        label_x1 = CTkLabel(
+            sidebarFrame, 
+            text='Epocas Totales: ', 
+            fg_color="transparent", 
+            text_color=WHITE,
+            font=(
+                "Arial",
+                15
+            )
+        )
+        label_x1.grid(row=4, column=0, padx=5, sticky='w')
+
+        entry_x1 = CTkEntry(sidebarFrame, width=100, textvariable=self.__epocasTotales)
+        entry_x1.bind("<KeyRelease>", validateEntry)
+        entry_x1.grid(row=4, column=1, padx=5, pady=5, sticky='e')
+
+        label_tasa = CTkLabel(
+            sidebarFrame, 
+            text='Tasa Ap: ',
+            fg_color="transparent", 
+            text_color=WHITE,
+            font=(
+                "Arial",
+                16
+            )
+        )
+        label_tasa.grid(row=6, column=0, padx=5, sticky='w')
+
+        entry_tasa = CTkEntry(sidebarFrame, width=100, textvariable=self.__lr)
+        entry_tasa.bind("<KeyRelease>", validateEntry)
+        entry_tasa.grid(row=6, column=1, padx=5, pady=5, sticky='e')
+
+        label_epocas = CTkLabel(
+            sidebarFrame, 
+            text='Epocas: ',
+            fg_color="transparent", 
+            text_color=WHITE,
+            font=(
+                "Arial",
+                16
+            )
+        )
+        label_epocas.grid(row=7, column=0, padx=5, sticky='w')
+
+        entry_epocas = CTkEntry(sidebarFrame, width=100, textvariable=self.__epocas)
+        entry_epocas.bind("<KeyRelease>", validateEntry)
+        entry_epocas.grid(row=7, column=1, padx=5, pady=5, sticky='e')
+
+        buttonGraficar = CTkButton(sidebarFrame, text=f'Graficar',  command=self.start)
+        buttonGraficar.grid(row=9, column=0, columnspan=2, padx=5, pady=6, sticky='news')
+
+        buttonDetener = CTkButton(sidebarFrame, text=f'Detener',  command=self.stop)
+        buttonDetener.grid(row=10, column=0, columnspan=2, padx=5, pady=6, sticky='news')
+
+        buttonLimpiar = CTkButton(sidebarFrame, text=f'Limpiar', command=self.generarGrafica)
+        buttonLimpiar.grid(row=12, column=0, columnspan=2, padx=5, sticky='news')
+
+        self.generarGrafica()
+
+    def secondComponents(self, frame, text):
+        if self.label:
+            self.label.destroy()
+        self.label = CTkLabel(
+            frame, 
+            text=f'{text}',
+            fg_color="transparent", 
+            text_color=WHITE,
+            font=(
+                "Arial",
+                16
+            )
+        )
+        self.label.pack()
