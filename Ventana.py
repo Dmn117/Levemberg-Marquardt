@@ -260,3 +260,98 @@ class Ventana(CTk):
             )
         )
         self.label.pack()
+
+    def configuracionDePunto(self, output):
+        if output == 0:
+            return 'o', 'blue'
+        if output == 1:
+            return 'x', 'red'
+
+
+    def generarGrafica(self):
+        # Restablece variables
+        self.__epocas.set(0)
+        self.points = np.zeros((0,3))
+        self.pointsY = np.zeros(0)
+        # Generación de Figura y colgado de canva
+        self.figure = Figure(figsize=(6.7, 5.6), dpi=100,)
+        self.graph = self.figure.add_subplot(111)
+        self.ConfigGrafica()
+
+        self.canvas = FigureCanvasTkAgg(self.figure, master=self.graphFrame)
+        self.canvas.get_tk_widget().grid(row=0, column=0, sticky='news')
+
+        cid = self.figure.canvas.mpl_connect('button_press_event', self.onClick)
+
+
+    def ConfigGrafica(self):
+        self.graph.cla()
+        self.graph.set_title('Multicapa')
+        self.graph.set_xlabel('X1')
+        self.graph.set_ylabel('X2')
+        self.graph.set_xlim([self.limits[0], self.limits[1]])
+        self.graph.set_ylim([self.limits[0], self.limits[1]])
+        # self.graph.grid(color='r', linestyle='--', linewidth=.3)
+        # self.graph.axhline(y=0, color="k",linewidth=.6)
+        # self.graph.axvline(x=0, color="k",linewidth=.6)
+        self.graph.grid(True)
+
+
+    def stop(self):
+        self.__epocas.set(self.__epocasTotales.get())
+
+
+    def start(self): # Obtener valores
+        hiddenLayer = np.array([])
+        #crear pesos y capa salida
+        outputLayer = RedMulticapa(lr=self.__lr.get(), inputs=self.__neuronas.get() + 1, outputLayer=True)
+        #crear capa entrada
+        for i in range(self.__neuronas.get()):
+            hiddenLayer = np.append(hiddenLayer, RedMulticapa(lr=self.__lr.get()))
+        #crear matriz identidad 
+        grid = np.zeros((self.__neuronas.get(), len(self.inputs)))
+
+        if self.__epocas.get() > 0:
+            self.__epocas.set(0)
+
+        while self.__epocas.get() <= self.__epocasTotales.get():
+            self.update()
+            self.ConfigGrafica()
+            #m= outputLayer.Jacobiana(error)
+            #verificar los puntos de la grafica para hacerlos converger   
+            for i in range(len(self.points)):
+                [layer.ObtenerSalida(self.points[i]) for layer in hiddenLayer]
+                outputLayer.ObtenerSalida(np.array([1] + [n.y for n in hiddenLayer]))
+                outputLayer.hessiana(CapaAnteriorY=[1] + [n.y for n in hiddenLayer], PuntoY=self.pointsY[i])   
+                [layer.hessiana(CapaAnteriorY=self.points[i], CapaSiguiente=outputLayer) for layer in hiddenLayer]
+            # puntos grafica
+            for i in range(len(self.points)):
+                marker, color = self.configuracionDePunto(self.pointsY[i])
+                self.graph.plot(self.points[i][1], self.points[i][2], marker=marker, markersize=15, linewidth=8, color=color)
+            
+            self.__epocas.set(self.__epocas.get() + 1)
+            #imprimir funcion contorno
+            for j in range(self.__neuronas.get()):
+                grid[j] = hiddenLayer[j].Suposicion(self.inputs)
+            self.outputs = [outputLayer.Suposicion(np.concatenate((np.array([1]), [g]), axis=None)) for g in grid.T]
+            self.outputs = np.array(self.outputs)
+            self.graph.contourf(self.xx, self.yy, self.outputs.reshape(self.xx.shape), cmap="seismic")
+            self.canvas.draw()
+
+
+    def onClick(self, event):
+        deseado: int
+        if event.button == 1:
+            deseado = 0
+        elif event.button == 3:
+            deseado = 1
+        
+        coordenadas = f'Coordenadas del clic: x={event.xdata:.2f}, y={event.ydata:.2f}'
+        marker, color = self.configuracionDePunto(deseado)
+        
+        self.points = np.append(self.points, [[1, float(event.xdata), float(event.ydata)]], axis=0)
+        self.pointsY = np.append(self.pointsY, [deseado])
+        self.graph.scatter(event.xdata, event.ydata, marker=marker, s=180, linewidths=5, c=color)
+        self.canvas.draw()
+
+        self.secondComponents(self.downFrame, coordenadas)
