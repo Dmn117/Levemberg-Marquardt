@@ -58,3 +58,7 @@ Si deseas realizar cambios o mejoras en el proyecto, puedes explorar las siguien
 ### Contribuciones y Problemas
 
 Si encuentras problemas o deseas contribuir al proyecto, ¡siéntete libre de abrir un problema o enviar una solicitud de extracción! Tu participación es bienvenida.
+
+### Licencia
+
+Este proyecto se distribuye bajo la licencia [MIT](LICENSE), lo que significa que puedes utilizar, modificar y distribuir libremente el código fuente. Agradecemos cualquier contribución o retroalimentación. ¡Disfruta del proyecto!
