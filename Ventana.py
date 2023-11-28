@@ -35,7 +35,7 @@ class Ventana(CTk):
         self.columnconfigure(index=0, weight=1)
         self.rowconfigure(index=0, weight=1)
 
-        self.title("Practica 5_6 - Multicapa")
+        self.title("Proyecto Red Multicapa - Levemberg Marquardt")
         self.iconbitmap('img/logo.ico')
         
         # Configuracions para el grafico
