@@ -1,0 +1,11 @@
+PRINCIPAL='#355C7D'
+SECOND='#4C2A85'
+BLACK='#000000'
+WHITE='#FFFFFF'
+
+#Paleta de colores para escala de grises (Oxford)
+OXFORD_1 = '#171718'
+OXFORD_2 = '#1F2124'
+OXFORD_3 = '#393D42'
+OXFORD_4 = '#6A6E73'
+OXFORD_5 = '#9FA3A9'
