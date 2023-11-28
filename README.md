@@ -4,7 +4,7 @@ Este proyecto implementa una red neuronal multicapa para la clasificación binar
 
 ### Contenido del Repositorio
 
-- **Ventana.py:** Contiene la implementación de la interfaz gráfica utilizando Tkinter para configurar y visualizar la red neuronal.
+- **Ventana.py:** Contiene la implementación de la interfaz gráfica utilizando CustomTkinter/Tkinter para configurar y visualizar la red neuronal.
 
 - **RedMulticapa.py:** Implementa la clase `RedMulticapa` que representa la red neuronal multicapa, con soporte para el algoritmo de Levenberg-Marquardt.
 
@@ -14,15 +14,26 @@ Este proyecto implementa una red neuronal multicapa para la clasificación binar
 
 ### Requisitos Previos
 
-- Python 3.x
-- Bibliotecas: NumPy, Tkinter (instalables a través de `pip install numpy tkinter`)
+- Python 3.11.2 (recomendado)
+- Bibliotecas: NumPy, Tkinter, CTkMessagebox, customtkinter, matplotlib (instalables a través de `pip install numpy tkinter`)
 
 ### Uso del Programa
 
 1. Ejecutar `Main.py`.
-2. Ajustar los parámetros de la red neuronal desde la interfaz gráfica.
-3. Hacer clic en el área de la gráfica para etiquetar puntos como azules (clic izquierdo, clase 0) o rojos (derecho, clase 1).
-4. Iniciar el entrenamiento y observar la evolución en tiempo real.
+   ![image](https://github.com/Dmn117/Levemberg-Marquardt/assets/102609918/2f7fd6c8-3eb4-4548-bb99-deac23862490)
+
+3. Ajustar los parámetros de la red neuronal desde la interfaz gráfica.
+   ![image](https://github.com/Dmn117/Levemberg-Marquardt/assets/102609918/11c1bea7-6927-4379-a5f2-e2c4fca9822e)
+
+5. Hacer clic en el área de la gráfica para etiquetar puntos como azules (clic izquierdo, clase 0) o rojos (derecho, clase 1).
+   ![image](https://github.com/Dmn117/Levemberg-Marquardt/assets/102609918/feb9679c-d9af-4b2f-b1ed-1c595e709dc3)
+
+7. Iniciar el entrenamiento y observar la evolución en tiempo real.
+   ![image](https://github.com/Dmn117/Levemberg-Marquardt/assets/102609918/53668a7a-3c03-46c4-9bac-45f594cc2e2c)
+
+9. Observa el resultado al terminar las epocas del entrenamiento.
+   ![image](https://github.com/Dmn117/Levemberg-Marquardt/assets/102609918/edcc5f2f-d4a5-40a1-a6b9-73a083b1f58e)
+
 
 ### Parámetros Configurables
 
